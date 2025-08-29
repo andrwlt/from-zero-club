@@ -4,7 +4,6 @@ import UserDropdown from "./UserDropdown";
 import { 
   Home, 
   User, 
-  Bell,
   LogIn
 } from "lucide-react";
 
@@ -31,7 +30,7 @@ export default function Navigation({
 }: NavigationProps) {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'dashboard', label: 'My Dashboard', icon: User },
+    { id: 'dashboard', label: 'My Profile', icon: User },
   ];
 
   // Mock user data for demonstration
@@ -78,17 +77,8 @@ export default function Navigation({
           {/* Right side actions */}
           <div className="flex items-center space-x-3">
             {isAuthenticated ? (
-              // Authenticated state: notifications and avatar
+              // Authenticated state: avatar only
               <>
-                <Button variant="ghost" size="sm" className="relative">
-                  <Bell className="w-4 h-4" />
-                  <Badge 
-                    variant="destructive" 
-                    className="absolute -top-1 -right-1 w-2 h-2 p-0 flex items-center justify-center text-xs"
-                  >
-                    3
-                  </Badge>
-                </Button>
                 <UserDropdown 
                   user={currentUser} 
                   onLogout={onLogout || (() => {})} 
@@ -100,7 +90,7 @@ export default function Navigation({
                 <Button variant="ghost" onClick={onLogin}>
                   Login
                 </Button>
-                <Button onClick={onLogin}>
+                <Button onClick={() => window.location.href = '/signup'}>
                   Join Club
                 </Button>
               </>

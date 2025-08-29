@@ -8,51 +8,19 @@ export default function LandingPage() {
   const featuredBuilders = [
     {
       id: 1,
-      name: "Alex Chen",
-      handle: "@alexchen",
-      avatar: "https://images.unsplash.com/photo-1617386124435-9eb3935b1e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGVudHJlcHJlbmV1ciUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NjMwNzUzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      joinDate: "Day 1",
-      currentDay: 47,
+      name: "Dzung Le",
+      handle: "@dzung_fz",
+      avatar: "https://pbs.twimg.com/profile_images/1780590241885331456/TGq5cl-p_x96.jpg",
+      joinDate: "Day 3",
+      currentDay: 3,
       metrics: {
-        followers: 1247,
-        posts: 47,
-        commits: 289,
+        followers: 88,
+        posts: 6,
+        commits: 5,
         revenue: 0
       },
-      description: "Building an AI-powered note-taking app. Day 47 of coding in public.",
+      description: "Building From Zero. Day 3 of build in public.",
       trending: true
-    },
-    {
-      id: 2,
-      name: "Sarah Kim",
-      handle: "@sarahbuilds",
-      avatar: "https://images.unsplash.com/photo-1617386124435-9eb3935b1e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGVudHJlcHJlbmV1ciUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NjMwNzUzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      joinDate: "Day 1",
-      currentDay: 123,
-      metrics: {
-        followers: 3456,
-        posts: 123,
-        commits: 567,
-        revenue: 1200
-      },
-      description: "Launched my SaaS tool and hit first $1K MRR! 123 days of consistent building.",
-      trending: false
-    },
-    {
-      id: 3,
-      name: "Marcus Johnson",
-      handle: "@marcusdev",
-      avatar: "https://images.unsplash.com/photo-1617386124435-9eb3935b1e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGVudHJlcHJlbmV1ciUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NjMwNzUzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      joinDate: "Day 1",
-      currentDay: 30,
-      metrics: {
-        followers: 543,
-        posts: 30,
-        commits: 145,
-        revenue: 0
-      },
-      description: "30 days of learning React and building projects. From zero coding experience.",
-      trending: false
     }
   ];
 
@@ -86,11 +54,11 @@ export default function LandingPage() {
             <div className="mt-8 flex items-center space-x-6 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <Users className="w-4 h-4" />
-                <span>1,247 builders</span>
+                <span>1 builder</span>
               </div>
               <div className="flex items-center space-x-2">
                 <TrendingUp className="w-4 h-4" />
-                <span>$2.3M tracked revenue</span>
+                <span>$0 tracked revenue</span>
               </div>
             </div>
           </div>

@@ -4,17 +4,21 @@ import HomePage from '@/components/HomePage'
 import { useAppContext } from './providers'
 import Navigation from '@/components/Navigation'
 import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
 
 export default function Home() {
   const { isAuthenticated, setIsAuthenticated, user } = useAppContext()
   const router = useRouter()
+  const supabase = createClient()
   
   const handleLogin = () => {
-    setIsAuthenticated(true)
+    router.push('/login')
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
     setIsAuthenticated(false)
+    router.refresh()
   }
   
   const handleViewChange = (view: string) => {

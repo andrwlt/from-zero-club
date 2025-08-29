@@ -30,32 +30,36 @@ import {
 } from "lucide-react";
 
 interface BuilderDashboardProps {
-  builder?: {
-    name: string;
-    handle: string;
-    avatar: string;
-    bio: string;
-    joinDate: string;
-    currentDay: number;
-    location: string;
-    website: string;
+  user?: {
+    id: string;
+    email?: string;
+    name?: string;
+    handle?: string;
+    avatar?: string;
+  };
+  profile?: {
+    id: string;
+    full_name?: string;
+    avatar_url?: string;
+    bio?: string;
+    website?: string;
+    twitter_handle?: string;
+    github_username?: string;
+    created_at?: string;
   };
 }
 
-export default function BuilderDashboard({ builder }: BuilderDashboardProps) {
-  // Mock data - in real app this would come from props/API
-  const defaultBuilder = {
-    name: "Alex Chen",
-    handle: "@alexchen",
-    avatar: "https://images.unsplash.com/photo-1617386124435-9eb3935b1e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGVudHJlcHJlbmV1ciUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NjMwNzUzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    bio: "Building an AI-powered note-taking app. Day 47 of coding in public. Previously: @techstartup",
-    joinDate: "Jan 1, 2024",
-    currentDay: 47,
-    location: "San Francisco, CA",
-    website: "alexchen.dev"
+export default function BuilderDashboard({ user, profile }: BuilderDashboardProps) {
+  // Combine user and profile data
+  const builderData = {
+    name: profile?.full_name || user?.name || 'Builder',
+    handle: profile?.twitter_handle || user?.handle || user?.email?.split('@')[0] || 'builder',
+    avatar: profile?.avatar_url || user?.avatar || '',
+    bio: profile?.bio || '',
+    website: profile?.website || '',
+    joinDate: profile?.created_at ? new Date(profile.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recently',
+    currentDay: profile?.created_at ? Math.floor((Date.now() - new Date(profile.created_at).getTime()) / (1000 * 60 * 60 * 24)) : 1
   };
-
-  const builderData = builder || defaultBuilder;
 
   const currentMetrics = {
     followers: 1247,
@@ -131,24 +135,17 @@ export default function BuilderDashboard({ builder }: BuilderDashboardProps) {
               <div className="flex items-center space-x-2 mb-1">
                 <h1 className="text-2xl font-bold">{builderData.name}</h1>
                 <Badge variant="secondary">
-                  <Flame className="w-3 h-3 mr-1" />
+                  <Flame className="w-3 h-3 mr-1 text-orange-500" />
                   Day {builderData.currentDay}
                 </Badge>
               </div>
-              <p className="text-muted-foreground">{builderData.handle}</p>
-              <p className="text-sm mt-2 max-w-md">{builderData.bio}</p>
+              <p className="text-muted-foreground">{builderData.handle.startsWith('@') ? builderData.handle : `@${builderData.handle}`}</p>
+              {builderData.bio && (
+                <p className="text-sm mt-2 max-w-md">{builderData.bio}</p>
+              )}
             </div>
           </div>
-          <div className="flex space-x-3">
-            <Button variant="outline" size="sm">
-              <Twitter className="w-4 h-4 mr-2" />
-              Follow
-            </Button>
-            <Button variant="outline" size="sm">
-              <Github className="w-4 h-4 mr-2" />
-              GitHub
-            </Button>
-          </div>
+          {/* Removed Twitter Follow and GitHub buttons */}
         </div>
       </div>
 

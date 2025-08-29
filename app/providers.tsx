@@ -1,18 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { User } from '@supabase/supabase-js'
 
 export interface AppContextValue {
   isAuthenticated: boolean
   setIsAuthenticated: (value: boolean) => void
   user?: {
-    name: string
-    handle: string
-    avatar: string
+    id: string
+    email?: string
+    name?: string
+    handle?: string
+    avatar?: string
   }
+  isLoading: boolean
 }
-
-import { createContext, useContext } from 'react'
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
 
@@ -26,16 +29,50 @@ export function useAppContext() {
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  
-  // Mock user data
-  const user = isAuthenticated ? {
-    name: "Alex Chen",
-    handle: "@alexchen",
-    avatar: "https://images.unsplash.com/photo-1617386124435-9eb3935b1e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGVudHJlcHJlbmV1ciUyMHBvcnRyYWl0fGVufDF8fHx8MTc1NjMwNzUzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-  } : undefined
+  const [user, setUser] = useState<AppContextValue['user']>()
+  const [isLoading, setIsLoading] = useState(true)
+  const supabase = createClient()
+
+  useEffect(() => {
+    // Check active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setIsAuthenticated(true)
+        setUser({
+          id: session.user.id,
+          email: session.user.email,
+          name: session.user.user_metadata?.full_name || session.user.user_metadata?.name,
+          handle: session.user.user_metadata?.user_name || session.user.user_metadata?.preferred_username,
+          avatar: session.user.user_metadata?.avatar_url || session.user.user_metadata?.picture,
+        })
+      }
+      setIsLoading(false)
+    })
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        setIsAuthenticated(true)
+        setUser({
+          id: session.user.id,
+          email: session.user.email,
+          name: session.user.user_metadata?.full_name || session.user.user_metadata?.name,
+          handle: session.user.user_metadata?.user_name || session.user.user_metadata?.preferred_username,
+          avatar: session.user.user_metadata?.avatar_url || session.user.user_metadata?.picture,
+        })
+      } else {
+        setIsAuthenticated(false)
+        setUser(undefined)
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [supabase.auth])
 
   return (
-    <AppContext.Provider value={{ isAuthenticated, setIsAuthenticated, user }}>
+    <AppContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, isLoading }}>
       {children}
     </AppContext.Provider>
   )
