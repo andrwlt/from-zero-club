@@ -6,7 +6,7 @@ import LoginForm from './login-form'
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: { message: string }
+  searchParams: Promise<{ message?: string }>
 }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -14,6 +14,8 @@ export default async function LoginPage({
   if (user) {
     redirect('/dashboard')
   }
+  
+  const params = await searchParams
 
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gradient-to-br from-gray-50 to-gray-100">
@@ -36,9 +38,9 @@ export default async function LoginPage({
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-          {searchParams?.message && (
+          {params?.message && (
             <div className="mb-4 rounded-md bg-green-50 p-4">
-              <p className="text-sm text-green-800">{searchParams.message}</p>
+              <p className="text-sm text-green-800">{params.message}</p>
             </div>
           )}
           

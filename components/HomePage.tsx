@@ -41,9 +41,11 @@ export default function HomePage({
         followers: 88,
         posts: 6,
         commits: 5,
-        revenue: 0
+        revenue: 0,
+        consistencyScore: 100
       },
       description: "Building From Zero. Day 3 of build in public.",
+      bio: "Building From Zero. Day 3 of build in public.",
       trending: true
     }
   ];

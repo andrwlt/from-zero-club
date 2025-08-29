@@ -12,9 +12,11 @@ interface NavigationProps {
   onViewChange: (view: string) => void;
   isAuthenticated?: boolean;
   user?: {
-    name: string;
-    handle: string;
-    avatar: string;
+    id?: string;
+    email?: string;
+    name?: string;
+    handle?: string;
+    avatar?: string;
   };
   onLogin?: () => void;
   onLogout?: () => void;

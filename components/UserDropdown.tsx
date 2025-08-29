@@ -12,9 +12,11 @@ import { Settings, Newspaper, LogOut } from "lucide-react";
 
 interface UserDropdownProps {
   user: {
-    name: string;
-    handle: string;
-    avatar: string;
+    id?: string;
+    email?: string;
+    name?: string;
+    handle?: string;
+    avatar?: string;
   };
   onLogout: () => void;
 }
@@ -25,8 +27,8 @@ export default function UserDropdown({ user, onLogout }: UserDropdownProps) {
       <DropdownMenuTrigger asChild>
         <div className="relative h-8 w-8 rounded-full cursor-pointer hover:opacity-75 transition-opacity">
           <ImageWithFallback
-            src={user.avatar}
-            alt={user.name}
+            src={user.avatar || ''}
+            alt={user.name || 'User'}
             className="h-8 w-8 rounded-full object-cover"
           />
         </div>
@@ -36,14 +38,14 @@ export default function UserDropdown({ user, onLogout }: UserDropdownProps) {
         <DropdownMenuLabel className="font-normal">
           <div className="flex items-center space-x-3 py-2">
             <ImageWithFallback
-              src={user.avatar}
-              alt={user.name}
+              src={user.avatar || ''}
+              alt={user.name || 'User'}
               className="h-10 w-10 rounded-full object-cover"
             />
             <div className="flex flex-col space-y-1">
-              <p className="font-medium leading-none">{user.name}</p>
+              <p className="font-medium leading-none">{user.name || 'User'}</p>
               <p className="text-sm text-muted-foreground leading-none">
-                {user.handle}
+                {user.handle || '@user'}
               </p>
             </div>
           </div>
