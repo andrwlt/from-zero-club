@@ -35,12 +35,12 @@ export default function HomePage({
       name: "Dzung Le",
       handle: "@dzung_fz",
       avatar: "https://pbs.twimg.com/profile_images/1780590241885331456/TGq5cl-p_x96.jpg",
-      joinDate: "Day 3",
-      currentDay: 3,
+      joinDate: "Day 0",
+      currentDay: 4,
       metrics: {
-        followers: 88,
-        posts: 6,
-        commits: 5,
+        followers: 97,
+        posts: 9,
+        commits: 10,
         revenue: 0,
         consistencyScore: 100
       },
@@ -58,7 +58,17 @@ export default function HomePage({
       handle: "@dzung_fz",
       avatar:
         "https://pbs.twimg.com/profile_images/1780590241885331456/TGq5cl-p_x96.jpg",
-      time: "1 hours ago",
+      time: "Just now",
+      updateType: "milestone",
+      achievement: "✅ Deploy first version of From Zero Club 🔥",
+    },
+    {
+      id: 2,
+      name: "Dzung Le",
+      handle: "@dzung_fz",
+      avatar:
+        "https://pbs.twimg.com/profile_images/1780590241885331456/TGq5cl-p_x96.jpg",
+      time: "a day ago",
       updateType: "post",
       achievement: "✅ Achievement unlocked: 3-day shitposting streak on X 🔥",
     },
