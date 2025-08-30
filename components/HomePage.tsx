@@ -60,7 +60,7 @@ export default function HomePage({
         "https://pbs.twimg.com/profile_images/1780590241885331456/TGq5cl-p_x96.jpg",
       time: "Just now",
       updateType: "milestone",
-      achievement: "✅ Deploy first version of From Zero Club 🔥",
+      achievement: "🚀 Deployed the first version of From Zero Club 🔥",
     },
     {
       id: 2,
