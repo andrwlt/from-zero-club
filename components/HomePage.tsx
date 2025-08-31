@@ -250,7 +250,7 @@ export default function HomePage({
       {/* Footer with moved navigation links */}
       <footer className="border-t border-border bg-muted/30">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Logo and description */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
@@ -267,37 +267,6 @@ export default function HomePage({
                 A public metrics dashboard for builders proving
                 their consistency from zero to success.
               </p>
-            </div>
-
-            {/* Product */}
-            <div>
-              <h4 className="font-semibold mb-4">Product</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <a
-                  href="#"
-                  className="block hover:text-foreground"
-                >
-                  How it works
-                </a>
-                <a
-                  href="#"
-                  className="block hover:text-foreground"
-                >
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="block hover:text-foreground"
-                >
-                  Pricing
-                </a>
-                <a
-                  href="#"
-                  className="block hover:text-foreground"
-                >
-                  API
-                </a>
-              </div>
             </div>
 
             {/* Resources */}
@@ -322,18 +291,12 @@ export default function HomePage({
                 >
                   Community
                 </a>
-                <a
-                  href="#"
-                  className="block hover:text-foreground"
-                >
-                  Help Center
-                </a>
               </div>
             </div>
 
-            {/* Company */}
+            {/* More */}
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
+              <h4 className="font-semibold mb-4">More</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <a
                   href="#"
@@ -342,22 +305,16 @@ export default function HomePage({
                   About
                 </a>
                 <a
-                  href="#"
+                  href="/privacy"
                   className="block hover:text-foreground"
                 >
                   Privacy
                 </a>
                 <a
-                  href="#"
+                  href="/terms"
                   className="block hover:text-foreground"
                 >
                   Terms
-                </a>
-                <a
-                  href="#"
-                  className="block hover:text-foreground"
-                >
-                  Support
                 </a>
               </div>
             </div>
